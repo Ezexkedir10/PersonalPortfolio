@@ -97,8 +97,7 @@
     color: white;
     transform: translateY(-3px);
   }
-  
-  /* Header Styles */
+
   header {
     position: fixed;
     top: 0;
@@ -221,7 +220,6 @@
     object-fit: cover;
   }
   
-  /* About Section */
   .about {
     padding: 100px 0;
     background-color: var(--light-color);
@@ -297,7 +295,6 @@
     color: var(--gray-color);
   }
   
-  /* Skills Section */
   .skills {
     padding: 100px 0;
     background-color: var(--dark-color);
@@ -352,7 +349,6 @@
     border-radius: 5px;
   }
   
-  /* Projects Section */
   .projects {
     padding: 100px 0;
     background-color: var(--light-color);
