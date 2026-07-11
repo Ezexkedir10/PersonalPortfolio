@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: login.php');
     exit;
@@ -35,76 +34,34 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .dashboard-container {
-            padding: 100px 20px 50px;
+        .logout-btn {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
         }
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .dashboard-title {
-            font-size: 2rem;
-        }
-        .dashboard-card {
-            background-color: var(--light-color);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: var(--box-shadow);
-        }
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .stat-card {
-            background-color: var(--dark-color);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: var(--box-shadow);
-        }
-        .stat-card h3 {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        .submissions-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .submissions-table th, .submissions-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .submissions-table th {
-            background-color: var(--dark-color);
-            color: var(--text-color);
-        }
-        .submissions-table tr:hover {
-            background-color: rgba(30, 41, 59, 0.5);
-        }
-        .empty-message {
-            text-align: center;
-            padding: 20px;
-            color: var(--gray-color);
+        .logout-btn:hover {
+            background: #ef4444;
+            color: white;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
         }
     </style>
 </head>
 <body>
+    <!-- Sticky Navigation -->
     <header>
         <div class="container">
             <div class="logo">
-                <h1>Admin Dashboard</h1>
+                <a href="../index.php">Ezedin<span>.dev Admin</span></a>
             </div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="../index.php">View Site</a></li>
-                    <li><a href="?logout=1">Logout</a></li>
+                    <li><a href="?logout=1" class="logout-btn">Logout <i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
             </nav>
         </div>
@@ -112,69 +69,80 @@ if (isset($_GET['logout'])) {
     
     <div class="dashboard-container container">
         <div class="dashboard-header">
-            <h2 class="dashboard-title">Welcome, <?php echo $_SESSION['admin_username']; ?></h2>
+            <h2 class="dashboard-title"><i class="fas fa-user-shield" style="color: var(--primary); margin-right: 12px;"></i>Welcome, <?php echo htmlspecialchars($_SESSION['admin_username']); ?></h2>
         </div>
         
         <div class="stats-container">
-            <div class="stat-card">
-                <h3><?php echo $visitor_count; ?></h3>
-                <p>Total Visitors</p>
+            <div class="stat-box" style="display: flex; align-items: center; justify-content: space-between; text-align: left; padding: 24px;">
+                <div>
+                    <div class="stat-number" style="font-size: 2.5rem;"><?php echo $visitor_count; ?></div>
+                    <div class="stat-label" style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary);">Total Visitors</div>
+                </div>
+                <div class="contact-icon-wrapper" style="background: rgba(6, 182, 212, 0.1); color: var(--secondary);"><i class="fas fa-users" style="font-size: 1.5rem;"></i></div>
             </div>
-            <div class="stat-card">
-                <h3><?php echo count($submissions); ?></h3>
-                <p>Contact Submissions</p>
+            
+            <div class="stat-box" style="display: flex; align-items: center; justify-content: space-between; text-align: left; padding: 24px;">
+                <div>
+                    <div class="stat-number" style="font-size: 2.5rem;"><?php echo count($submissions); ?></div>
+                    <div class="stat-label" style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-secondary);">Contact Submissions</div>
+                </div>
+                <div class="contact-icon-wrapper" style="background: rgba(99, 102, 241, 0.1); color: var(--primary);"><i class="fas fa-envelope-open-text" style="font-size: 1.5rem;"></i></div>
             </div>
         </div>
         
         <div class="dashboard-card">
-            <h3>Recent Contact Submissions</h3>
+            <h3><i class="fas fa-list-ul" style="color: var(--secondary); margin-right: 10px;"></i>Recent Submissions Log</h3>
             
             <?php if (empty($submissions)): ?>
-                <div class="empty-message">
-                    <p>No contact submissions yet.</p>
+                <div class="visitor-stat-card" style="border-style: solid; background: rgba(255, 255, 255, 0.02);">
+                    <i class="fas fa-info-circle"></i>
+                    <span>No contact submissions found in the database.</span>
                 </div>
             <?php else: ?>
-                <table class="submissions-table">
-                    <thead>
-                        <tr>
-                            <th>Date/Time</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach (array_reverse($submissions) as $submission): ?>
+                <div style="overflow-x: auto;">
+                    <table class="submissions-table">
+                        <thead>
                             <tr>
-                                <?php 
-                                    // Parse the log entry
-                                    $parts = explode(' - ', $submission, 2);
-                                    $datetime = $parts[0] ?? '';
-                                    
-                                    $details = '';
-                                    if (isset($parts[1])) {
-                                        $details = $parts[1];
-                                    }
-                                    
-                                    // Extract name and email
-                                    preg_match('/New message from: (.*) $$(.*)$$/', $details, $matches);
-                                    $name = $matches[1] ?? 'Unknown';
-                                    $email = $matches[2] ?? 'Unknown';
-                                ?>
-                                <td><?php echo $datetime; ?></td>
-                                <td><?php echo $name; ?></td>
-                                <td><?php echo $email; ?></td>
+                                <th><i class="far fa-calendar-alt" style="margin-right: 6px;"></i> Date / Time</th>
+                                <th><i class="far fa-user" style="margin-right: 6px;"></i> Sender Name</th>
+                                <th><i class="far fa-envelope" style="margin-right: 6px;"></i> Email Address</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach (array_reverse($submissions) as $submission): ?>
+                                <tr>
+                                    <?php 
+                                        // Parse the log entry: "[Date/Time] - New message from: [Name] ([Email])"
+                                        $parts = explode(' - ', $submission, 2);
+                                        $datetime = $parts[0] ?? '';
+                                        
+                                        $details = $parts[1] ?? '';
+                                        
+                                        // Extract name and email using regex
+                                        preg_match('/New message from: (.*) \((.*)\)/', $details, $matches);
+                                        $name = $matches[1] ?? 'Unknown';
+                                        $email = $matches[2] ?? 'Unknown';
+                                    ?>
+                                    <td style="font-weight: 500; color: var(--text-primary);"><?php echo htmlspecialchars($datetime); ?></td>
+                                    <td><?php echo htmlspecialchars($name); ?></td>
+                                    <td>
+                                        <a href="mailto:<?php echo htmlspecialchars($email); ?>" style="color: var(--secondary); font-weight: 500;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--secondary)'">
+                                            <?php echo htmlspecialchars($email); ?> <i class="fas fa-external-link-alt" style="font-size: 0.75rem; margin-left: 4px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             <?php endif; ?>
         </div>
     </div>
     
-    <footer>
+    <footer style="margin-top: 80px;">
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; <?php echo date("Y"); ?> Ezedin Kedir. All Rights Reserved.</p>
+            <div class="footer-content" style="justify-content: center;">
+                <p>&copy; <?php echo date("Y"); ?> Ezedin Kedir Portfolio Control Panel. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
