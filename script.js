@@ -1,100 +1,174 @@
-
 document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.querySelector(".hamburger")
-  const navLinks = document.querySelector(".nav-links")
+  // Mobile Hamburger Toggle
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
 
   if (hamburger) {
     hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active")
-      navLinks.classList.toggle("active")
-    })
+      hamburger.classList.toggle("active");
+      navLinks.classList.toggle("active");
+    });
   }
 
+  // Close Mobile Menu on Click
   document.querySelectorAll(".nav-links a").forEach((link) => {
     link.addEventListener("click", () => {
-      hamburger.classList.remove("active")
-      navLinks.classList.remove("active")
-    })
-  })
+      if (hamburger) hamburger.classList.remove("active");
+      if (navLinks) navLinks.classList.remove("active");
+    });
+  });
 
-  const filterBtns = document.querySelectorAll(".filter-btn")
-  const projectCards = document.querySelectorAll(".project-card")
+  // Typed Text Effect for Hero
+  const typedTextSpan = document.querySelector(".typed-text");
+  if (typedTextSpan) {
+    const words = JSON.parse(typedTextSpan.getAttribute("data-words") || "[]");
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    function typeEffect() {
+      const currentWord = words[wordIndex] || "";
+      if (isDeleting) {
+        typedTextSpan.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typedTextSpan.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let speed = isDeleting ? 40 : 100;
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        speed = 2000; // Pause at end of word
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        speed = 500; // Pause before typing next word
+      }
+
+      setTimeout(typeEffect, speed);
+    }
+
+    if (words.length > 0) {
+      setTimeout(typeEffect, 1000);
+    }
+  }
+
+  // Scroll Entrance Animations (IntersectionObserver)
+  const animElements = document.querySelectorAll(".scroll-animate");
+  const animObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animated");
+          // Optionally stop observing once animated
+          animObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  animElements.forEach((el) => animObserver.observe(el));
+
+  // Projects Grid Category Filter
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
 
   filterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      filterBtns.forEach((btn) => btn.classList.remove("active"))
-      btn.classList.add("active")
-      const filter = btn.getAttribute("data-filter")
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      
+      const filterValue = btn.getAttribute("data-filter");
 
       projectCards.forEach((card) => {
-        if (filter === "all" || card.getAttribute("data-category") === filter) {
-          card.style.display = "block"
+        const cardCategory = card.getAttribute("data-category");
+        
+        if (filterValue === "all" || cardCategory === filterValue) {
+          card.style.display = "flex";
+          // Small delay to trigger smooth transition
           setTimeout(() => {
-            card.style.opacity = "1"
-            card.style.transform = "translateY(0)"
-          }, 100)
+            card.style.opacity = "1";
+            card.style.transform = "scale(1)";
+          }, 50);
         } else {
-          card.style.opacity = "0"
-          card.style.transform = "translateY(20px)"
+          card.style.opacity = "0";
+          card.style.transform = "scale(0.95)";
+          // Set display none after opacity animation completes
           setTimeout(() => {
-            card.style.display = "none"
-          }, 300)
+            card.style.display = "none";
+          }, 350);
         }
-      })
-    })
-  })
+      });
+    });
+  });
 
-  const skillBars = document.querySelectorAll(".skill-progress")
-  skillBars.forEach((bar) => {
-    const percentage = bar.parentElement.previousElementSibling.querySelector("p").textContent
-    bar.style.setProperty("--width", percentage)
-  })
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate')
-        observer.unobserve(entry.target)
+  // Sticky Header Active State on Scroll
+  const sections = document.querySelectorAll("section[id]");
+  const headerLinks = document.querySelectorAll(".nav-links a:not(.secondary-btn)");
+
+  function updateActiveLink() {
+    const scrollY = window.pageYOffset;
+
+    sections.forEach((section) => {
+      const sectionHeight = section.offsetHeight;
+      const sectionTop = section.offsetTop - 120;
+      const sectionId = section.getAttribute("id");
+
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        headerLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${sectionId}`) {
+            link.classList.add("active");
+          }
+        });
       }
-    })
-  }, { threshold: 0.5 })
-  
-  skillBars.forEach(bar => {
-    observer.observe(bar)
-  })
+    });
+  }
 
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault()
+  window.addEventListener("scroll", updateActiveLink);
 
-      const targetId = this.getAttribute("href")
-      const targetElement = document.querySelector(targetId)
-
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: "smooth",
-        })
-      }
-    })
-  })
-
-  const contactForm = document.getElementById("contactForm")
+  // Client-side Contact Form Validation
+  const contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
-      const name = document.getElementById("name").value
-      const email = document.getElementById("email").value
-      const subject = document.getElementById("subject").value
-      const message = document.getElementById("message").value
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
 
-      let isValid = true
-      if (!name || !email || !subject || !message) {
-        isValid = false
+      let isValid = true;
+      let errorMsg = [];
+
+      if (!name) {
+        isValid = false;
+        errorMsg.push("Name is required");
       }
+      if (!email) {
+        isValid = false;
+        errorMsg.push("Email is required");
+      } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          isValid = false;
+          errorMsg.push("Please provide a valid email format");
+        }
+      }
+      if (!subject) {
+        isValid = false;
+        errorMsg.push("Subject is required");
+      }
+      if (!message) {
+        isValid = false;
+        errorMsg.push("Message body is required");
+      }
+
       if (!isValid) {
-        e.preventDefault()
-        alert("Please fill in all fields")
+        e.preventDefault();
+        alert(errorMsg.join("\n"));
       }
-    })
+    });
   }
-})
+});
