@@ -151,9 +151,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h4>Connect & Follow</h4>
                         <div class="social-platforms">
                             <a href="https://github.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/ezedinkedir-910464398" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/ezedin-kedir-910464398" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://x.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>

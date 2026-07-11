@@ -91,7 +91,7 @@ $visitor_count = updateVisitorCount();
     <header>
         <div class="container">
             <div class="logo">
-                <a href="#home">Ezedin<span>.dev</span></a>
+                <a href="#home">Ezedin<span>Kedir</span></a>
             </div>
             <nav>
                 <ul class="nav-links">
@@ -172,6 +172,13 @@ $visitor_count = updateVisitorCount();
                                 <p>+251 979 906161</p>
                             </div>
                         </div>
+                        <div class="detail-item" style="grid-column: span 2;">
+                            <div class="detail-icon"><i class="fas fa-language"></i></div>
+                            <div class="detail-info">
+                                <h4>Languages</h4>
+                                <p>English, Amharic</p>
+                            </div>
+                        </div>
                     </div>
                     
                     <a href="resume.php" class="btn primary-btn download-cv" style="margin-top: 30px;">
@@ -181,7 +188,7 @@ $visitor_count = updateVisitorCount();
                 
                 <div class="stats-sidebar">
                     <div class="stat-box">
-                        <div class="stat-number">1+</div>
+                        <div class="stat-number">3+</div>
                         <div class="stat-label">Years Experience</div>
                         <div class="stat-desc">Through Professional Internships & Projects</div>
                     </div>
@@ -373,6 +380,27 @@ $visitor_count = updateVisitorCount();
                         </div>
                     </div>
                 </div>
+
+                <!-- Certificates -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-title">
+                                <h3>STEM e-Learning Certificate</h3>
+                                <span class="timeline-subtitle">University of Padua</span>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="timeline-date">Completed</span>
+                                <div class="timeline-location"><i class="fas fa-certificate"></i> Credential URL</div>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Successfully completed professional learning modules issued under the STEM e-Learning Program run by the University of Padua.</p>
+                            <p><a href="https://stem.elearning.unipd.it/course/view.php?id=14875" target="_blank" style="color: var(--secondary); font-weight: 600;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--secondary)'">Verify Credential <i class="fas fa-external-link-alt" style="font-size: 0.8rem; margin-left: 4px;"></i></a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -405,7 +433,7 @@ $visitor_count = updateVisitorCount();
                             </div>
                             <div class="project-links">
                                 <a href="<?php echo $project['github_link']; ?>" target="_blank" class="btn secondary-btn"><i class="fab fa-github"></i> Code</a>
-                                <a href="<?php echo $project['demo_link']; ?>" class="btn primary-btn"><i class="fas fa-external-link-alt"></i> Demo</a>
+                               
                             </div>
                         </div>
                     </div>
@@ -449,9 +477,9 @@ $visitor_count = updateVisitorCount();
                         <h4>Connect & Follow</h4>
                         <div class="social-platforms">
                             <a href="https://github.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/ezedinkedir-910464398" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/ezedin-kedir-910464398" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://x.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
