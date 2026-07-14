@@ -4,40 +4,55 @@ require_once 'config.php';
 $projects = [
     [
         'id' => 1,
-        'title' => 'Appointment Booking System',
-        'description' => 'A full-stack booking platform enabling users to schedule and manage appointments through a responsive web interface integrated with RESTful APIs.',
-        'image' => 'assets/1.jpg',
+        'title' => 'Pharmacy Clinic Management System',
+        'description' => 'A healthcare operations platform for managing patient registration, doctor flow, prescriptions, medicine inventory, and billing in one reliable experience for clinics and pharmacies.',
+        'image' => 'assets/5.jpg',
         'category' => 'fullstack',
-        'technologies' => ['Next.js', 'React', 'Tailwind CSS', 'RESTful API'],
+        'status' => 'Featured Case Study',
+        'technologies' => ['Next.js', 'React', 'Django REST', 'PostgreSQL', 'Role-Based Access'],
         'demo_link' => '#',
         'github_link' => 'https://github.com/Ezexkedir10'
     ],
     [
         'id' => 2,
-        'title' => 'Football Quiz Website',
-        'description' => 'An interactive football quiz website featuring dynamic quiz logic, score tracking, real-time feedback, and a responsive user interface designed for high engagement.',
-        'image' => 'assets/2.jpg',
-        'category' => 'web',
-        'technologies' => ['HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS'],
+        'title' => 'Appointment Booking System',
+        'description' => 'A full-stack booking platform that helps users schedule, reschedule, and track appointments through a responsive interface connected to dependable REST APIs.',
+        'image' => 'assets/1.jpg',
+        'category' => 'fullstack',
+        'status' => 'Production Style UI',
+        'technologies' => ['Next.js', 'React', 'Tailwind CSS', 'RESTful API'],
         'demo_link' => '#',
         'github_link' => 'https://github.com/Ezexkedir10'
     ],
     [
         'id' => 3,
-        'title' => 'InkLink - Creative Platform',
-        'description' => 'A digital publishing platform enabling Ethiopian readers and writers to discover, manage, and publish written content through a modern interface.',
+        'title' => 'InkLink Creative Platform',
+        'description' => 'A digital publishing platform that enables Ethiopian readers and writers to discover, organize, and publish content through a modern editorial experience.',
         'image' => 'assets/3.jpg',
         'category' => 'fullstack',
+        'status' => 'Platform Design',
         'technologies' => ['Next.js', 'React', 'Tailwind CSS', 'PostgreSQL'],
         'demo_link' => '#',
         'github_link' => 'https://github.com/Ezexkedir10'
     ],
     [
         'id' => 4,
-        'title' => 'Ethiopian Football Industry',
-        'description' => 'Currently designing a modern platform for the Ethiopian football ecosystem using Next.js, with planned features including league, club, player, and match info supported by a scalable API.',
+        'title' => 'Football Quiz Website',
+        'description' => 'An interactive football quiz product with dynamic scoring, real-time feedback, and a responsive interface designed to keep users engaged round after round.',
+        'image' => 'assets/2.jpg',
+        'category' => 'web',
+        'status' => 'Interactive Frontend',
+        'technologies' => ['HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS'],
+        'demo_link' => '#',
+        'github_link' => 'https://github.com/Ezexkedir10'
+    ],
+    [
+        'id' => 5,
+        'title' => 'Ethiopian Football Industry Platform',
+        'description' => 'A modern product direction for the Ethiopian football ecosystem with planned league, club, player, and match intelligence powered by a scalable API-first architecture.',
         'image' => 'assets/4.jpg',
         'category' => 'web',
+        'status' => 'In Progress',
         'technologies' => ['Next.js', 'React', 'FastAPI', 'System Design'],
         'demo_link' => '#',
         'github_link' => 'https://github.com/Ezexkedir10'
@@ -82,452 +97,420 @@ $visitor_count = updateVisitorCount();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ezedin Kedir | Full Stack Developer Portfolio</title>
-    <meta name="description" content="Ezedin Kedir is a Computer Science and Engineering graduate specializing in full-stack web and mobile application development with React, Next.js, Django, and Flutter.">
+    <meta name="description" content="Ezedin Kedir is a Computer Science and Engineering graduate building stylish full-stack web experiences with strong frontend craft, API design, and scalable backend systems.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Sticky Navigation -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href="#home">Ezedin<span>Kedir</span></a>
+    <div class="page-shell">
+        <div class="ambient ambient-one"></div>
+        <div class="ambient ambient-two"></div>
+        <div class="ambient ambient-three"></div>
+
+        <header id="site-header">
+            <div class="container nav-shell">
+                <a href="#home" class="brand-mark">Ezedin<span>Kedir</span></a>
+
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home" class="active">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#experience">Journey</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact-cta">Contact</a></li>
+                    </ul>
+                    <a href="contact.php" class="nav-contact">Let&apos;s Talk</a>
+                    <button class="hamburger" type="button" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </nav>
             </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Journey</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="contact.php" class="secondary-btn" style="padding: 6px 16px; border-radius: 20px;">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </nav>
-        </div>
-    </header>
-    
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <span class="hero-subtitle">Available for opportunities</span>
-                <h1>Hi, My Name is <br><span class="gradient-text">Ezedin Kedir</span></h1>
-                <h2>I'm a <span class="typed-text" data-words='["Full Stack Developer", "Software Engineer", "UI/UX Designer"]'></span></h2>
-                <p>Computer Science and Engineering graduate specializing in building responsive web applications, developing RESTful APIs, and implementing scalable database solutions using modern web architectures.</p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn primary-btn">View My Work <i class="fas fa-arrow-right"></i></a>
-                    <a href="contact.php" class="btn secondary-btn">Get In Touch</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="image-glow-wrapper">
-                    <div class="profile-img-container">
-                        <img src="p2.png" alt="Ezedin Kedir" class="profile-img">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- About Section -->
-    <section id="about" class="about scroll-animate">
-        <div class="container">
-            <h2 class="section-title">About <span>Me</span></h2>
-            <div class="about-grid">
-                <div class="about-card">
-                    <p>I am a Computer Science & Engineering graduate from Adama Science and Technology University with a strong foundation in full-stack development, algorithms, and UI/UX design. I bridge the gap between backend scalability and beautiful frontend visuals, translating business requirements into intuitive interfaces.</p>
-                    <p>A collaborative problem solver, I focus on clean architecture, performance optimization, and writing maintainable code. My experience includes training in competitive programming (ICPC) and building diverse digital products from interactive apps to digital publication platforms.</p>
-                    
-                    <div class="personal-details-grid">
-                        <div class="detail-item">
-                            <div class="detail-icon"><i class="fas fa-graduation-cap"></i></div>
-                            <div class="detail-info">
-                                <h4>Education</h4>
-                                <p>B.Sc. CSE, ASTU</p>
-                            </div>
+        <main>
+            <section id="home" class="hero">
+                <div class="container hero-grid">
+                    <div class="hero-copy">
+                        <div class="eyebrow">
+                            <span class="eyebrow-dot"></span>
+                            Available for internships and developer opportunities
                         </div>
-                        <div class="detail-item">
-                            <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="detail-info">
-                                <h4>Location</h4>
-                                <p>Addis Ababa, Ethiopia</p>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="detail-info">
-                                <h4>Email</h4>
-                                <p>ezexkedir19@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-icon"><i class="fas fa-phone-alt"></i></div>
-                            <div class="detail-info">
-                                <h4>Phone</h4>
-                                <p>+251 979 906161</p>
-                            </div>
-                        </div>
-                        <div class="detail-item" style="grid-column: span 2;">
-                            <div class="detail-icon"><i class="fas fa-language"></i></div>
-                            <div class="detail-info">
-                                <h4>Languages</h4>
-                                <p>English, Amharic</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <a href="resume.php" class="btn primary-btn download-cv" style="margin-top: 30px;">
-                        <i class="fas fa-download"></i> Download CV
-                    </a>
-                </div>
-                
-                <div class="stats-sidebar">
-                    <div class="stat-box">
-                        <div class="stat-number">3+</div>
-                        <div class="stat-label">Years Experience</div>
-                        <div class="stat-desc">Through Professional Internships & Projects</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">4+</div>
-                        <div class="stat-label">Core Projects</div>
-                        <div class="stat-desc">From Appointment Schedulers to Content Hubs</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">100+</div>
-                        <div class="stat-label">ICPC Problems</div>
-                        <div class="stat-desc">Algorithmic solutions on LeetCode & Codeforces</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <h1>Building polished digital products with strong code, clear systems, and bold visual taste.</h1>
+                        <h2>I&apos;m <span class="gradient-text">Ezedin Kedir</span>, a <span class="typed-text" data-words='["Full Stack Developer","Software Engineer","Frontend-Focused Builder"]'></span></h2>
+                        <p>I design and build portfolio-worthy experiences across frontend, backend, and product thinking. My work blends clean architecture, responsive interfaces, and the kind of visual consistency that makes software feel premium.</p>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills scroll-animate">
-        <div class="container">
-            <h2 class="section-title">My <span>Skills</span></h2>
-            <div class="skills-layout">
-                <div class="skills-category-card">
-                    <h3><i class="fas fa-code"></i> Frontend Frameworks & Languages</h3>
-                    <div class="skills-badge-grid">
-                        <?php foreach ($skills['frontend'] as $skill): ?>
-                            <div class="skill-chip">
-                                <i class="<?php echo $skill['icon']; ?>"></i>
-                                <span><?php echo $skill['name']; ?></span>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
+                        <div class="hero-actions">
+                            <a href="#projects" class="btn primary-btn">Explore Projects <i class="fas fa-arrow-right"></i></a>
+                            <a href="resume.php" class="btn ghost-btn"><i class="fas fa-download"></i> Download CV</a>
+                        </div>
 
-                <div class="skills-category-card">
-                    <h3><i class="fas fa-server"></i> Backend, APIs & Databases</h3>
-                    <div class="skills-badge-grid">
-                        <?php foreach ($skills['backend'] as $skill): ?>
-                            <div class="skill-chip">
-                                <i class="<?php echo $skill['icon']; ?>"></i>
-                                <span><?php echo $skill['name']; ?></span>
+                        <div class="hero-metrics">
+                            <div class="metric-card">
+                                <strong>5+</strong>
+                                <span>Featured builds</span>
                             </div>
-                        <?php endforeach; ?>
+                            <div class="metric-card">
+                                <strong>3+</strong>
+                                <span>Years learning & shipping</span>
+                            </div>
+                            <div class="metric-card">
+                                <strong>100+</strong>
+                                <span>Algorithm problems solved</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="skills-category-card">
-                    <h3><i class="fas fa-toolbox"></i> Tools, Languages & Fundamentals</h3>
-                    <div class="skills-badge-grid">
-                        <?php foreach ($skills['tools'] as $skill): ?>
-                            <div class="skill-chip">
-                                <i class="<?php echo $skill['icon']; ?>"></i>
-                                <span><?php echo $skill['name']; ?></span>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                
-                <!-- Core Competencies Progress -->
-                <div class="skills-category-card">
-                    <h3><i class="fas fa-brain"></i> Core Focus Areas</h3>
-                    <div class="core-skills-wrapper">
-                        <div class="core-skill-item">
-                            <div class="core-skill-header">
-                                <h4>Full-Stack Development</h4>
-                                <span>92%</span>
-                            </div>
-                            <div class="core-progress-bar">
-                                <div class="core-progress-fill" style="width: 92%;"></div>
-                            </div>
+                    <div class="hero-visual">
+                        <div class="portrait-frame">
+                            <div class="portrait-ring"></div>
+                            <img src="p2.png" alt="Ezedin Kedir portrait" class="profile-img">
                         </div>
-                        <div class="core-skill-item">
-                            <div class="core-skill-header">
-                                <h4>RESTful API Design</h4>
-                                <span>90%</span>
-                            </div>
-                            <div class="core-progress-bar">
-                                <div class="core-progress-fill" style="width: 90%;"></div>
-                            </div>
-                        </div>
-                        <div class="core-skill-item">
-                            <div class="core-skill-header">
-                                <h4>UI/UX & Responsive Web Design</h4>
-                                <span>85%</span>
-                            </div>
-                            <div class="core-progress-bar">
-                                <div class="core-progress-fill" style="width: 85%;"></div>
-                            </div>
-                        </div>
-                        <div class="core-skill-item">
-                            <div class="core-skill-header">
-                                <h4>Data Structures & Algorithms</h4>
-                                <span>88%</span>
-                            </div>
-                            <div class="core-progress-bar">
-                                <div class="core-progress-fill" style="width: 88%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Journey / Timeline Section -->
-    <section id="experience" class="timeline-section scroll-animate">
-        <div class="container">
-            <h2 class="section-title">My <span>Journey</span></h2>
-            <div class="timeline-container">
-                <!-- Buna Labs Intern -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div class="timeline-title">
-                                <h3>Front-End Development Intern</h3>
-                                <span class="timeline-subtitle">Buna Labs Company</span>
-                            </div>
-                            <div class="timeline-meta">
-                                <span class="timeline-date">06/2025 – 08/2025</span>
-                                <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</div>
-                            </div>
+                        <div class="floating-panel panel-top">
+                            <span class="panel-label">Current Focus</span>
+                            <strong>Advanced full-stack products</strong>
+                            <p>React, APIs, databases, and premium UI direction.</p>
                         </div>
-                        <div class="timeline-body">
-                            <ul class="timeline-bullets">
-                                <li>Developed responsive, interactive user interfaces utilizing Next.js, React, and Tailwind CSS.</li>
-                                <li>Collaborated closely with designers and project stakeholders to construct polished frontend components and boost usability.</li>
-                                <li>Transformed complex wireframes into modular, high-performing frontend systems, ensuring cross-browser consistency.</li>
-                            </ul>
-                            <div class="timeline-tech-tags">
-                                <span class="tech-tag">Next.js</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Tailwind CSS</span>
-                                <span class="tech-tag">JavaScript</span>
-                            </div>
+
+                        <div class="floating-panel panel-bottom">
+                            <span class="panel-label">Signature Project</span>
+                            <strong>Pharmacy Clinic System</strong>
+                            <p>Patient flow, prescriptions, stock, and billing in one system.</p>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Omricom Intern -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div class="timeline-title">
-                                <h3>Front-End Development Intern</h3>
-                                <span class="timeline-subtitle">Omricom Software Technologies</span>
-                            </div>
-                            <div class="timeline-meta">
-                                <span class="timeline-date">06/2024 – 08/2024</span>
-                                <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</div>
-                            </div>
+            <section id="about" class="about scroll-animate">
+                <div class="container">
+                    <div class="section-heading split-heading">
+                        <div>
+                            <span class="section-kicker">About Me</span>
+                            <h2>Designer-minded engineering with a builder&apos;s mindset.</h2>
                         </div>
-                        <div class="timeline-body">
-                            <ul class="timeline-bullets">
-                                <li>Built responsive web pages ensuring pixel-perfect layout renderings across varying viewports.</li>
-                                <li>Assisted in building custom component configurations, improving search engine visibility and accessibility.</li>
-                                <li>Worked on design integrations, syncing static content patterns into fluid layout schemes.</li>
-                            </ul>
-                            <div class="timeline-tech-tags">
-                                <span class="tech-tag">HTML5</span>
-                                <span class="tech-tag">CSS3</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">Tailwind CSS</span>
+                        <p>I care about how a product feels as much as how it functions. That balance helps me create systems that are not only reliable under the hood, but also memorable on the screen.</p>
+                    </div>
+
+                    <div class="about-layout">
+                        <article class="glass-card story-card">
+                            <p>I am a Computer Science and Engineering graduate from Adama Science and Technology University with a strong foundation in full-stack development, algorithms, and interface design. I enjoy taking ideas from rough concept to polished experience.</p>
+                            <p>My work style is practical and detail-focused: plan the system clearly, build responsive and maintainable components, and refine the visuals until everything feels intentional. I am especially excited by products in healthcare, education, and digital platforms that solve real problems.</p>
+
+                            <div class="identity-grid">
+                                <div class="identity-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <div>
+                                        <h4>Education</h4>
+                                        <p>B.Sc. CSE, ASTU</p>
+                                    </div>
+                                </div>
+                                <div class="identity-item">
+                                    <i class="fas fa-location-dot"></i>
+                                    <div>
+                                        <h4>Location</h4>
+                                        <p>Addis Ababa, Ethiopia</p>
+                                    </div>
+                                </div>
+                                <div class="identity-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <h4>Email</h4>
+                                        <p>ezexkedir19@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="identity-item">
+                                    <i class="fas fa-language"></i>
+                                    <div>
+                                        <h4>Languages</h4>
+                                        <p>English, Amharic</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </article>
+
+                        <aside class="highlights-stack">
+                            <div class="glass-card spotlight-card">
+                                <span class="spotlight-tag">Strength</span>
+                                <h3>Full-stack execution with frontend taste</h3>
+                                <p>I build products that connect modern UI, scalable APIs, and structured database design into one coherent experience.</p>
+                            </div>
+                            <div class="glass-card mini-stats">
+                                <div>
+                                    <strong>Frontends</strong>
+                                    <span>Responsive, accessible, modern</span>
+                                </div>
+                                <div>
+                                    <strong>Backends</strong>
+                                    <span>REST APIs, auth, data flow</span>
+                                </div>
+                                <div>
+                                    <strong>Mindset</strong>
+                                    <span>Problem solving with visual discipline</span>
+                                </div>
+                            </div>
+                        </aside>
                     </div>
                 </div>
+            </section>
 
-                <!-- Education -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div class="timeline-title">
-                                <h3>B.Sc. Computer Science and Engineering</h3>
-                                <span class="timeline-subtitle">Adama Science and Technology University</span>
-                            </div>
-                            <div class="timeline-meta">
-                                <span class="timeline-date">09/2021 – 06/2026</span>
-                                <div class="timeline-location"><i class="fas fa-graduation-cap"></i> Adama, Ethiopia</div>
-                            </div>
-                        </div>
-                        <div class="timeline-body">
-                            <p><strong>CGPA: 3.59/4.00 | Exit Examination Score: 79/100</strong></p>
-                            <p>Completed intensive engineering coursework including Data Structures & Algorithms, Object-Oriented Programming, Database Systems, Web Development, Software Engineering, Networks, and Operating Systems.</p>
-                            <p><strong>Competitive Programming training:</strong> Completed training through the International Collegiate Programming Contest (ICPC) Training Program, solving 100+ algorithmic problems across LeetCode and Codeforces.</p>
-                        </div>
+            <section id="skills" class="skills scroll-animate">
+                <div class="container">
+                    <div class="section-heading">
+                        <span class="section-kicker">Capabilities</span>
+                        <h2>Tools and technologies I use to turn ideas into polished products.</h2>
                     </div>
-                </div>
 
-                <!-- Certificates -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div class="timeline-title">
-                                <h3>STEM e-Learning Certificate</h3>
-                                <span class="timeline-subtitle">University of Padua</span>
-                            </div>
-                            <div class="timeline-meta">
-                                <span class="timeline-date">Completed</span>
-                                <div class="timeline-location"><i class="fas fa-certificate"></i> Credential URL</div>
-                            </div>
-                        </div>
-                        <div class="timeline-body">
-                            <p>Successfully completed professional learning modules issued under the STEM e-Learning Program run by the University of Padua.</p>
-                            <p><a href="https://stem.elearning.unipd.it/course/view.php?id=14875" target="_blank" style="color: var(--secondary); font-weight: 600;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--secondary)'">Verify Credential <i class="fas fa-external-link-alt" style="font-size: 0.8rem; margin-left: 4px;"></i></a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects scroll-animate">
-        <div class="container">
-            <h2 class="section-title">Featured <span>Projects</span></h2>
-            
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
-                <button class="filter-btn" data-filter="web">Web Front-End</button>
-            </div>
-            
-            <div class="projects-grid">
-                <?php foreach ($projects as $project): ?>
-                    <div class="project-card" data-category="<?php echo $project['category']; ?>">
-                        <div class="project-img">
-                            <img src="<?php echo $project['image']; ?>" alt="<?php echo htmlspecialchars($project['title']); ?>">
-                            <div class="project-overlay"></div>
-                        </div>
-                        <div class="project-content">
-                            <h3><?php echo htmlspecialchars($project['title']); ?></h3>
-                            <p><?php echo htmlspecialchars($project['description']); ?></p>
-                            <div class="project-tech-tags">
-                                <?php foreach ($project['technologies'] as $tech): ?>
-                                    <span><?php echo htmlspecialchars($tech); ?></span>
+                    <div class="skills-showcase">
+                        <div class="glass-card skills-card">
+                            <h3><i class="fas fa-code"></i> Frontend</h3>
+                            <div class="chip-grid">
+                                <?php foreach ($skills['frontend'] as $skill): ?>
+                                    <div class="skill-chip">
+                                        <i class="<?php echo $skill['icon']; ?>"></i>
+                                        <span><?php echo $skill['name']; ?></span>
+                                    </div>
                                 <?php endforeach; ?>
                             </div>
-                            <div class="project-links">
-                                <a href="<?php echo $project['github_link']; ?>" target="_blank" class="btn secondary-btn"><i class="fab fa-github"></i> Code</a>
-                               
+                        </div>
+
+                        <div class="glass-card skills-card">
+                            <h3><i class="fas fa-server"></i> Backend & Data</h3>
+                            <div class="chip-grid">
+                                <?php foreach ($skills['backend'] as $skill): ?>
+                                    <div class="skill-chip">
+                                        <i class="<?php echo $skill['icon']; ?>"></i>
+                                        <span><?php echo $skill['name']; ?></span>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact CTA Section -->
-    <section id="contact-cta" class="contact scroll-animate">
-        <div class="container">
-            <h2 class="section-title">Get In <span>Touch</span></h2>
-            
-            <div class="contact-layout">
-                <div class="contact-sidebar">
-                    <div class="contact-card">
-                        <div class="contact-icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Addis Ababa, Ethiopia</p>
+                        <div class="glass-card skills-card">
+                            <h3><i class="fas fa-toolbox"></i> Tools & Foundations</h3>
+                            <div class="chip-grid">
+                                <?php foreach ($skills['tools'] as $skill): ?>
+                                    <div class="skill-chip">
+                                        <i class="<?php echo $skill['icon']; ?>"></i>
+                                        <span><?php echo $skill['name']; ?></span>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon-wrapper"><i class="fas fa-envelope"></i></div>
-                        <div>
-                            <h4>Email</h4>
-                            <p><a href="mailto:ezexkedir19@gmail.com">ezexkedir19@gmail.com</a></p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon-wrapper"><i class="fas fa-phone-alt"></i></div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p><a href="tel:0979906161">0979906161</a></p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card" style="flex-direction: column; align-items: flex-start; gap: 15px;">
-                        <h4>Connect & Follow</h4>
-                        <div class="social-platforms">
-                            <a href="https://github.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/ezedin-kedir-910464398" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://x.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-twitter"></i></a>
-                            <a href="https://instagram.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+
+                        <div class="glass-card focus-card">
+                            <div class="focus-copy">
+                                <span class="section-kicker">Core Focus</span>
+                                <h3>From user experience to system flow, I like products that feel complete.</h3>
+                            </div>
+
+                            <div class="progress-list">
+                                <div class="progress-item">
+                                    <div class="progress-meta"><span>Full-Stack Development</span><strong>92%</strong></div>
+                                    <div class="progress-track"><span style="width: 92%"></span></div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-meta"><span>RESTful API Design</span><strong>90%</strong></div>
+                                    <div class="progress-track"><span style="width: 90%"></span></div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-meta"><span>UI / UX Direction</span><strong>88%</strong></div>
+                                    <div class="progress-track"><span style="width: 88%"></span></div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-meta"><span>Algorithms & Problem Solving</span><strong>86%</strong></div>
+                                    <div class="progress-track"><span style="width: 86%"></span></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="contact-form-wrapper">
-                    <form action="contact.php" method="POST">
-                        <div class="form-group-row">
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </section>
+
+            <section id="experience" class="journey scroll-animate">
+                <div class="container">
+                    <div class="section-heading split-heading">
+                        <div>
+                            <span class="section-kicker">Journey</span>
+                            <h2>Experience, education, and the path that shaped my engineering style.</h2>
+                        </div>
+                        <p>Each step strengthened a different part of my process: interface precision, collaboration, structured thinking, and shipping work that feels solid from both technical and visual angles.</p>
+                    </div>
+
+                    <div class="timeline">
+                        <article class="timeline-entry">
+                            <div class="timeline-marker"></div>
+                            <div class="glass-card timeline-card">
+                                <div class="timeline-head">
+                                    <div>
+                                        <h3>Front-End Development Intern</h3>
+                                        <span>Buna Labs Company</span>
+                                    </div>
+                                    <div class="timeline-date">June 2025 - August 2025</div>
+                                </div>
+                                <p>Built interactive interfaces with Next.js, React, and Tailwind CSS while collaborating with designers and stakeholders to transform ideas into modular, polished frontend systems.</p>
                             </div>
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+                        </article>
+
+                        <article class="timeline-entry">
+                            <div class="timeline-marker"></div>
+                            <div class="glass-card timeline-card">
+                                <div class="timeline-head">
+                                    <div>
+                                        <h3>Front-End Development Intern</h3>
+                                        <span>Omricom Software Technologies</span>
+                                    </div>
+                                    <div class="timeline-date">June 2024 - August 2024</div>
+                                </div>
+                                <p>Worked on responsive web pages, refined layout behavior across devices, and helped shape visual consistency and usability through careful implementation.</p>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject Topic" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn primary-btn" style="width: 100%; border-radius: 12px; padding: 14px 20px;">Send Secure Message <i class="fas fa-paper-plane"></i></button>
-                    </form>
-                    
-                    <div class="visitor-stat-card">
-                        <i class="fas fa-eye"></i>
-                        <span>Thank you for stopping by! You are visitor number </span>
-                        <span class="visitor-badge">#<?php echo $visitor_count; ?></span>
+                        </article>
+
+                        <article class="timeline-entry">
+                            <div class="timeline-marker"></div>
+                            <div class="glass-card timeline-card">
+                                <div class="timeline-head">
+                                    <div>
+                                        <h3>B.Sc. Computer Science and Engineering</h3>
+                                        <span>Adama Science and Technology University</span>
+                                    </div>
+                                    <div class="timeline-date">September 2021 - June 2026</div>
+                                </div>
+                                <p>Completed core engineering coursework in data structures, algorithms, databases, software engineering, networking, and web systems. CGPA: 3.59/4.00.</p>
+                            </div>
+                        </article>
+
+                        <article class="timeline-entry">
+                            <div class="timeline-marker"></div>
+                            <div class="glass-card timeline-card">
+                                <div class="timeline-head">
+                                    <div>
+                                        <h3>STEM e-Learning Certificate</h3>
+                                        <span>University of Padua</span>
+                                    </div>
+                                    <div class="timeline-date">Certificate Earned</div>
+                                </div>
+                                <p>Completed professional learning modules under the STEM e-Learning Program.</p>
+                                <a href="https://stem.elearning.unipd.it/course/view.php?id=14875" target="_blank" class="inline-link">Verify Credential <i class="fas fa-arrow-up-right-from-square"></i></a>
+                            </div>
+                        </article>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; <?php echo date("Y"); ?> Ezedin Kedir. All Rights Reserved. Crafted with passion.</p>
-                <div class="footer-nav">
+            <section id="projects" class="projects scroll-animate">
+                <div class="container">
+                    <div class="section-heading split-heading">
+                        <div>
+                            <span class="section-kicker">Projects</span>
+                            <h2>Selected work that shows product thinking, engineering depth, and visual ambition.</h2>
+                        </div>
+                        <p>The collection below highlights real product direction, user-focused interfaces, API-backed workflows, and one of the strongest additions: your pharmacy clinic management system.</p>
+                    </div>
+
+                    <div class="project-filters">
+                        <button class="filter-btn active" data-filter="all" type="button">All</button>
+                        <button class="filter-btn" data-filter="fullstack" type="button">Full-Stack</button>
+                        <button class="filter-btn" data-filter="web" type="button">Frontend</button>
+                    </div>
+
+                    <div class="featured-project-banner glass-card">
+                        <div>
+                            <span class="section-kicker">Spotlight Build</span>
+                            <h3>Pharmacy Clinic Management System</h3>
+                            <p>A complete healthcare workflow concept covering registration, consultations, prescriptions, medicine inventory, reporting, and billing with a clean modern interface.</p>
+                        </div>
+                        <a href="#projects-grid" class="btn primary-btn">See Project Cards</a>
+                    </div>
+
+                    <div class="projects-grid" id="projects-grid">
+                        <?php foreach ($projects as $project): ?>
+                            <article class="project-card" data-category="<?php echo $project['category']; ?>">
+                                <div class="project-image-wrap">
+                                    <img src="<?php echo $project['image']; ?>" alt="<?php echo htmlspecialchars($project['title']); ?>">
+                                    <span class="project-status"><?php echo htmlspecialchars($project['status']); ?></span>
+                                </div>
+                                <div class="project-body">
+                                    <div class="project-copy">
+                                        <h3><?php echo htmlspecialchars($project['title']); ?></h3>
+                                        <p><?php echo htmlspecialchars($project['description']); ?></p>
+                                    </div>
+                                    <div class="project-tech-tags">
+                                        <?php foreach ($project['technologies'] as $tech): ?>
+                                            <span><?php echo htmlspecialchars($tech); ?></span>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="<?php echo $project['github_link']; ?>" target="_blank" class="btn ghost-btn"><i class="fab fa-github"></i> Code</a>
+                                    </div>
+                                </div>
+                            </article>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact-cta" class="contact scroll-animate">
+                <div class="container">
+                    <div class="contact-band glass-card">
+                        <div class="contact-intro">
+                            <span class="section-kicker">Let&apos;s Build</span>
+                            <h2>Need a developer who cares about both system quality and visual finish?</h2>
+                            <p>I&apos;m open to internships, junior developer roles, collaborations, and ambitious digital product work.</p>
+
+                            <div class="contact-points">
+                                <a href="mailto:ezexkedir19@gmail.com"><i class="fas fa-envelope"></i> ezexkedir19@gmail.com</a>
+                                <a href="tel:+251979906161"><i class="fas fa-phone"></i> +251 979 906161</a>
+                                <span><i class="fas fa-location-dot"></i> Addis Ababa, Ethiopia</span>
+                            </div>
+
+                            <div class="social-platforms">
+                                <a href="https://github.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/ezedin-kedir-910464398" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://x.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-twitter"></i></a>
+                                <a href="https://instagram.com/Ezexkedir10" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-wrapper">
+                            <form id="contactForm" action="contact.php" method="POST">
+                                <div class="form-grid">
+                                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                    <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+                                </div>
+                                <input type="text" id="subject" name="subject" placeholder="Project Subject" required>
+                                <textarea id="message" name="message" placeholder="Tell me about your idea..." required></textarea>
+                                <button type="submit" class="btn primary-btn submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                            </form>
+
+                            <div class="visitor-card">
+                                <i class="fas fa-eye"></i>
+                                <span>Visitor number</span>
+                                <strong>#<?php echo $visitor_count; ?></strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container footer-shell">
+                <p>&copy; <?php echo date("Y"); ?> Ezedin Kedir. Crafted with code, clarity, and visual intention.</p>
+                <div class="footer-links">
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
                     <a href="#skills">Skills</a>
-                    <a href="#experience">Journey</a>
                     <a href="#projects">Projects</a>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
