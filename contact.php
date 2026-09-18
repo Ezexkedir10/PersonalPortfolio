@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 require_once 'config.php';
 
 $name = $email = $subject = $message = "";
@@ -178,4 +178,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="script.js"></script>
 </body>
-</html>
+</html> -->
+<?php
+require_once 'config.php';
+
+/**
+ * Handles the contact form.
+ * - fetch() requests (script.js) get a JSON response.
+ * - A normal form post (JavaScript off) is redirected back to the page with a status.
+ * - Opening contact.php directly just sends the visitor to the contact section.
+ */
+
+$isAjax = (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'fetch');
+
+function respond(bool $ok, string $message, array $errors, bool $isAjax): void
+{
+    if ($isAjax) {
+        header('Content-Type: application/json; charset=UTF-8');
+        http_response_code($ok ? 200 : 422);
+        echo json_encode(['ok' => $ok, 'message' => $message, 'errors' => $errors]);
+        exit;
+    }
+    $_SESSION['flash'] = ['ok' => $ok, 'message' => $message, 'errors' => $errors];
+    header('Location: index.php#contact');
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: index.php#contact');
+    exit;
+}
+
+// Honeypot: real visitors never see or fill this field.
+if (!empty($_POST['website'])) {
+    respond(true, 'Message sent.', [], $isAjax);
+}
+
+$name    = cleanLine($_POST['name'] ?? '');
+$email   = cleanLine($_POST['email'] ?? '');
+$subject = cleanLine($_POST['subject'] ?? '');
+$message = cleanText($_POST['message'] ?? '');
+$errors  = [];
+
+if ($name === '' || mb_strlen($name) > 80)         $errors[] = 'Enter your name (up to 80 characters).';
+if (!filter_var($email, FILTER_VALIDATE_EMAIL))    $errors[] = 'Enter a valid email address so I can reply.';
+if ($subject === '' || mb_strlen($subject) > 120)  $errors[] = 'Add a subject (up to 120 characters).';
+if (mb_strlen($message) < 10)                      $errors[] = 'Write a message of at least 10 characters.';
+if (mb_strlen($message) > 4000)                    $errors[] = 'Shorten your message to under 4000 characters.';
+
+if (!$errors && isRateLimited()) {
+    $errors[] = 'You just sent a message. Wait 30 seconds before sending another.';
+}
+
+if ($errors) {
+    respond(false, 'The message was not sent.', $errors, $isAjax);
+}
+
+$headers  = 'From: ' . SITE_NAME . ' <no-reply@' . ($_SERVER['SERVER_NAME'] ?? 'localhost') . '>' . "\r\n";
+$headers .= 'Reply-To: ' . $email . "\r\n";
+$headers .= 'MIME-Version: 1.0' . "\r\n";
+$headers .= 'Content-Type: text/html; charset=UTF-8' . "\r\n";
+
+$body = '<h2>New portfolio message</h2>'
+      . '<p><strong>Name:</strong> ' . e($name) . '</p>'
+      . '<p><strong>Email:</strong> ' . e($email) . '</p>'
+      . '<p><strong>Subject:</strong> ' . e($subject) . '</p>'
+      . '<p><strong>Message:</strong><br>' . nl2br(e($message)) . '</p>';
+
+$mailed = @mail(ADMIN_EMAIL, 'Portfolio: ' . $subject, $body, $headers);
+$logged = logMessage("From {$name} <{$email}> | {$subject} | " . str_replace(["\r", "\n"], ' ', $message) . ($mailed ? '' : ' [mail() failed]'));
+
+if (!$mailed && !$logged) {
+    respond(false, 'The message could not be delivered.', ['Email me directly at ' . SITE_EMAIL . '.'], $isAjax);
+}
+
+$_SESSION['last_contact'] = time();
+respond(true, 'Message sent. I usually reply within a day.', [], $isAjax);
